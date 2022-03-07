@@ -29,7 +29,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     `}
   }
   
-  input[type="text"] {
+  input[type="email"] {
     width: 297px;
     height: 41px;
     margin-bottom: 40px;
@@ -46,7 +46,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     `}
   }
 
-  input[type="button"] {
+  input[type="submit"] {
     display: flex;
     flex-direction: row;
     justify-content: center;

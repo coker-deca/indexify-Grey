@@ -1,6 +1,5 @@
-import { FC } from "react";
-import { Logo } from "../components/ui/Logo/Logo";
+import { FC } from 'react';
 
-export const HomePage: FC = () => (
-    <Logo />
-);
+import Table from '../components/ui/Table/Table';
+
+export const HomePage: FC = () => <Table />;

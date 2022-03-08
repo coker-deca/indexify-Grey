@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 
 interface Props {
@@ -7,14 +7,14 @@ interface Props {
   handleNextPage: (page: number) => void;
   handlePrevPage: (page: number) => void;
 }
-const Pagination: React.FC<Props> = ({
+const Pagination: FC<Props> = ({
   currentPage,
   totalPages,
   handlePrevPage,
   handleNextPage,
 }) => {
   return (
-    <div className="pagination-button-wrapper" style={{ background: "red", width: "100%", float: "right"}}>
+    <div className="pagination-button-wrapper">
       <button
         className="pagination-button"
         onClick={() => handlePrevPage(currentPage)}
@@ -25,7 +25,7 @@ const Pagination: React.FC<Props> = ({
       </button>
 
       <span className="pagination-page-info">
-        Page {currentPage} of {totalPages}
+        {currentPage} of {totalPages}
       </span>
 
       <button

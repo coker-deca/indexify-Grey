@@ -60,9 +60,18 @@ export const TableWrapper = styled.div`
   }
 `;
 
+export const TableContainer = styled.div`
+    width: 100%;
+    overflow: hidden;
+    border-radius: 5px;
+    overflow-x: auto;
+`;
+
 export const StyledTable = styled.table`
   background: #ffffff;
   width: 100%;
+  min-width: 760px;
+  overflow: scroll;
   padding: 1em;
   margin: 20px 0;
   border-collapse: collapse;

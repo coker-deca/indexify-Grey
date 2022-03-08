@@ -3,7 +3,7 @@ import { tableHeadType, Users } from '../../../pages/HomePage';
 
 import { formatDate } from '../../lib/date';
 import Pagination from './Pagination';
-import { StyledTable, TableWrapper } from './Style';
+import { StyledTable, TableContainer, TableWrapper } from './Style';
 
 interface TableProps {
   page: number;
@@ -45,12 +45,14 @@ const Table: FC<TableProps> = ({
 
   return (
     <TableWrapper>
-      <StyledTable>
-        <thead>
-          <tr>{headRow()}</tr>
-        </thead>
-        <tbody className="trhover">{tableData()}</tbody>
-      </StyledTable>
+      <TableContainer>
+        <StyledTable>
+          <thead>
+            <tr>{headRow()}</tr>
+          </thead>
+          <tbody className="trhover">{tableData()}</tbody>
+        </StyledTable>
+      </TableContainer>
       <Pagination
         totalPages={totalPages}
         currentPage={page}

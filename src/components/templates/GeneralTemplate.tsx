@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
 
 import Button from '../ui/Button/Button';
 import { Logo } from '../ui/Logo/Logo';
@@ -10,12 +11,17 @@ export const Template: FC<SearchProps> = ({
   handleChange,
   children,
 }) => {
+  const history = useHistory();
+  const handleClick = () => {
+    localStorage.removeItem("token");
+    history.push("/sign_up");
+  };
   return (
     <>
       <NavBar>
         <Logo />
         <Search value={value} handleChange={handleChange} />
-        <Button value="Logout" />
+        <Button value="Logout" onClick={handleClick} />
       </NavBar>
       {children}
     </>

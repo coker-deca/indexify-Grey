@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+
 import { MainColors } from '../../../constants/colors';
 
 export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
@@ -65,6 +66,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     font-size: 14px;
     line-height: 18px;
     border-radius: 5px;
+    cursor: pointer;
     ${({ useMediaQuery }) =>
     useMediaQuery &&
     css`

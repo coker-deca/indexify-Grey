@@ -1,8 +1,9 @@
 import styled, { css } from 'styled-components';
+import { MainColors } from '../../../constants/colors';
 
 export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
-  background: #FFFFFF;
-  border: 1px solid #F0F0F0;
+  background: ${MainColors.white};
+  border: 1px solid ${MainColors['signUp-border']};
   box-sizing: border-box;
   border-radius: 5px;
   padding: 9% 12%;
@@ -21,7 +22,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     margin: 4px 0;
     line-height: 16px;
     letter-spacing: -0.005em;
-    color: #000000
+    color: ${MainColors.black};
     ${({ useMediaQuery }) =>
     useMediaQuery &&
     css`
@@ -34,8 +35,8 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     height: 41px;
     margin-bottom: 40px;
 
-    background: #FFFFFF;
-    border: 1px solid #F1F1F1;
+    background: ${MainColors.white};
+    border: 1px solid ${MainColors['indexify-border']};
     box-sizing: border-box;
     border-radius: 5px;
     ${({ useMediaQuery }) =>
@@ -55,9 +56,9 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     width: 18.6rem;
     margin-bottom: 20px;
     height: 2.4rem;
-    background: #428AF5;
+    background: ${MainColors['indexify-blue']};
     border: none;
-    color: #FFFFFF;
+    color: ${MainColors.white};
     letter-spacing: -0.005em;
     font-style: normal;
     font-weight: bold;
@@ -81,7 +82,7 @@ export const Title = styled.h2<{ useMediaQuery: boolean }>`
     line-height: 23px;
     margin-bottom: 40px;
     letter-spacing: -0.005em;
-    color: #000000;
+    color: ${MainColors.black};
     ${({ useMediaQuery }) =>
         useMediaQuery &&
         css`

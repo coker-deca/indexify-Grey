@@ -1,10 +1,11 @@
+import { MainColors } from './../../../constants/colors';
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
     padding: 10px 28px;
-    background: #428AF5;
+    background: ${MainColors['indexify-blue']};
     border: none;
-    color: #FFFFFF;
+    color: ${MainColors.white};
     letter-spacing: -0.005em;
     font-style: normal;
     font-weight: bold;

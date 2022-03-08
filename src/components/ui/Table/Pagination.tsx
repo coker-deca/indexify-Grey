@@ -25,7 +25,7 @@ const Pagination: FC<Props> = ({
       </button>
 
       <span className="pagination-page-info">
-        {currentPage} of {totalPages}
+        <span className="current-page">{currentPage}</span> of {totalPages}
       </span>
 
       <button

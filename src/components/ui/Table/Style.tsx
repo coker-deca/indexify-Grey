@@ -1,22 +1,32 @@
 import styled from 'styled-components';
 
+import { MainColors } from '../../../constants/colors';
+
 export const TableWrapper = styled.div`
   max-width: 60rem;
   margin: auto;
   font-family: DM Sans;
   padding: 10px;
 
-  .heading {
-    color: #14877c;
-    border-bottom: 1px solid #14877c;
-    margin-bottom: 30px;
-    padding-bottom: 10px;
-  }
-
   .pagination-button-wrapper {
     display: flex;
     width: 100%;
     justify-content: flex-end;
+  }
+
+  .current-page {
+    color: ${MainColors.black};
+  }
+
+  .pagination-page-info {
+    color: ${MainColors["indexify-grey"]};
+    font-family: DM Sans;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 18px;
+    text-align: center;
+    letter-spacing: -0.005em;
   }
 
   button {
@@ -25,21 +35,21 @@ export const TableWrapper = styled.div`
     font-size: 17px;
     user-select: none;
     border-radius: 5px;
-    color: #ffffff;
-    background-color: #428af5;
+    color: ${MainColors.white};
+    background-color: ${MainColors['indexify-blue']};
     cursor: pointer;
     margin: 0px 15px;
     border: none;
   }
 
   button:hover {
-    background-color: #498fff;
-    color: #ffffff;
+    background-color: ${MainColors['button-hover']};
+    color: ${MainColors.white};
   }
 
   button:disabled {
     cursor: not-allowed;
-    background-color: #e9e9e9;
+    background-color: ${MainColors.disabled};
     :hover {
       background: none;
     }
@@ -47,42 +57,40 @@ export const TableWrapper = styled.div`
 `;
 
 export const TableContainer = styled.div`
-    width: 100%;
-    overflow: hidden;
-    border-radius: 5px;
-    overflow-x: auto;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  overflow-x: auto;
 `;
 
 export const StyledTable = styled.table`
-  background: #ffffff;
+  background: ${MainColors.white};
   width: 100%;
   min-width: 760px;
   overflow: scroll;
   padding: 1em;
-  margin: 20px 0;
+  margin: 12px 0;
   border-collapse: collapse;
-  border: 1px solid #f1f1f1;
+  border: 1px solid ${MainColors['indexify-border']};
   box-sizing: border-box;
   border-radius: 5px;
 
-  thead {
-    font-size: 16px;
-  }
-
-  th {
+  thead tr td {
     text-align: left;
-    padding: 8px;
-    background-color: 1px solid #ffffff;
-    color: #14877c;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: -0.005em;
+    padding: 16px;
   }
 
-  td {
-    border-top: 1px solid #f1f1f1;
+  tbody tr td {
+    border-top: 1px solid ${MainColors['indexify-border']};
+    font-style: normal;
+    font-weight: normal;
+    font-size: 13px;
     text-align: left;
-    padding: 8px;
-  }
-
-  tr {
-    height: 50px;
+    padding: 15px;
   }
 `;

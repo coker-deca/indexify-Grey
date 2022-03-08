@@ -1,12 +1,13 @@
 import styled from 'styled-components';
+import { MainColors } from '../../../constants/colors';
 
 export const InputContainer = styled.div`
     width: 40%;
     min-width: 200px;
 
     input {
-        background: #ffffff;
-        border: 1px solid #f1f1f1;
+        background: ${MainColors.white};
+        border: 1px solid ${MainColors['indexify-border']};
         box-sizing: border-box;
         border-radius: 5px;
         width: 100%;

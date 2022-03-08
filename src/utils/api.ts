@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
 
-import {setupInterceptorsTo} from "./interceptor";
+import { setupInterceptorsTo } from './interceptor';
 
 setupInterceptorsTo(axios);
 

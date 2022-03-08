@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
-import { createHttpRequest } from '../../../constants/api';
 
+import { createHttpRequest } from '../../../utils/api';
 import { StyledContainer, Title } from './Style';
 
 const Card = () => {

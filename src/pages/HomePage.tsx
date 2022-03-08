@@ -3,7 +3,7 @@ import { FC, useEffect, useRef, useState } from 'react';
 
 import { Template } from '../components/templates/GeneralTemplate';
 import Table from '../components/ui/Table/Table';
-import { fetchHttpResponse } from '../constants/api';
+import { fetchHttpResponse } from '../utils/api';
 
 export interface Users {
   _id: string;

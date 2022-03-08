@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { tableHeadType, Users } from '../../../pages/HomePage';
 
+import { tableHeadType, Users } from '../../../pages/HomePage';
 import { formatDate } from '../../lib/date';
 import Pagination from './Pagination';
 import { StyledTable, TableContainer, TableWrapper } from './Style';
@@ -24,11 +24,11 @@ const Table: FC<TableProps> = ({
   const tableRows = (rowData: any) => {
     const { company, index } = rowData;
     const tableCell = Object.keys(tableHead);
-    const columnData = tableCell.map((keyD, i) => {
-      if (keyD === "createdAt")
-        return <td key={i}>{formatDate(company[keyD])}</td>;
-      else return <td key={i}>{company[keyD]}</td>;
-    });
+      const columnData = tableCell.map((keyD, i) => {
+        let value = company[keyD];
+        if (keyD === "createdAt") value = formatDate(value);
+        return <td key={i}>{value}</td>;
+      });
 
     return <tr key={index}>{columnData}</tr>;
   };

@@ -44,7 +44,7 @@ const Table: FC<TableProps> = ({
   };
 
   return (
-    <TableWrapper>
+    <TableWrapper >
       <TableContainer>
         <StyledTable>
           <thead>

@@ -1,4 +1,5 @@
 import React, { FC } from 'react';
+import { InputContainer } from './Style';
 
 export interface SearchProps {
     value: string;
@@ -7,14 +8,14 @@ export interface SearchProps {
 
 const Search: FC<SearchProps> = ({ value, handleChange }) => {
   return (
-    <div className="search">
+    <InputContainer>
       <input
         type="search"
         placeholder="Search for a user"
         value={value}
         onChange={handleChange}
       />
-    </div>
+    </InputContainer>
   );
 };
 

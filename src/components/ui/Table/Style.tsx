@@ -4,6 +4,7 @@ export const TableWrapper = styled.div`
   max-width: 60rem;
   margin: auto;
   font-family: DM Sans;
+  padding: 10px;
 
   .heading {
     color: #14877c;
@@ -18,21 +19,6 @@ export const TableWrapper = styled.div`
     justify-content: flex-end;
   }
 
-  input {
-    background: #ffffff;
-    border: 1px solid #f1f1f1;
-    box-sizing: border-box;
-    border-radius: 5px;
-    width: 40%;
-    min-width: 200px;
-    padding: 10px;
-    font-family: DM Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 13px;
-    line-height: 17px;
-    letter-spacing: -0.005em;
-  }
   button {
     height: 26px;
     width: 26px;

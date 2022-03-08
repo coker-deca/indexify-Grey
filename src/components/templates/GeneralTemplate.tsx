@@ -1,8 +1,8 @@
 import { FC } from 'react';
 
+import Button from '../ui/Button/Button';
 import { Logo } from '../ui/Logo/Logo';
 import Search, { SearchProps } from '../ui/Search/Search';
-import { TableWrapper } from '../ui/Table/Style';
 import { NavBar } from './Style';
 
 export const Template: FC<SearchProps> = ({
@@ -15,6 +15,7 @@ export const Template: FC<SearchProps> = ({
       <NavBar>
         <Logo />
         <Search value={value} handleChange={handleChange} />
+        <Button value="Logout" />
       </NavBar>
       {children}
     </>

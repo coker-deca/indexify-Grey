@@ -68,31 +68,32 @@ export const HomePage: FC = () => {
     createdAt: "Date Created",
   };
 
-  useEffect(() => {
-    getData(value);
-  }, [companies, value, page]);
+    const {
+      data: allCompanies,
+      error: allCompaniesError,
+      isLoading: allCompaniesLoading,
+    } = useGetCompaniesQuery(page);
 
-  const {
-    data: allCompanies,
-    error: allCompaniesError,
-    isLoading: allCompaniesLoading,
-  } = useGetCompaniesQuery(page);
+    const {
+      data: someCompanies,
+      error: someCompaniesError,
+      isLoading: someCompaniesLoading,
+    } = useGetSomeCompaniesQuery({ search: value, page });
 
-  const {
-    data: someCompanies,
-    error: someCompaniesError,
-    isLoading: someCompaniesLoading,
-  } = useGetSomeCompaniesQuery({ search: value, page });
+    useEffect(() => {
+      const getData = async (criteria: string) => {
+        if (criteria.length) {
+          someCompanies && setCompanies(someCompanies.payload.companies);
+          someCompanies &&
+            setTotalPages(Math.floor(someCompanies.payload.pages));
+        } else {
+          allCompanies && setCompanies(allCompanies.payload.companies);
+          allCompanies && setTotalPages(Math.floor(allCompanies.payload.pages));
+        }
+      };
 
-  const getData = async (criteria: string) => {
-    if (criteria.length) {
-      someCompanies && setCompanies(someCompanies.payload.companies);
-      someCompanies && setTotalPages(Math.floor(someCompanies.payload.pages));
-    } else {
-      allCompanies && setCompanies(allCompanies.payload.companies);
-      allCompanies && setTotalPages(Math.floor(allCompanies.payload.pages));
-    }
-  };
+      getData(value);
+    }, [companies, value, page, someCompanies, allCompanies]);
 
   return (
     <ModalProvider>

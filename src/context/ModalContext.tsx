@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useEffect, useRef, useState } from 'react';
+import { createContext, FC, useEffect, useRef, useState } from 'react';
 
 import { Container } from '../components/ui/Portal/Style';
 

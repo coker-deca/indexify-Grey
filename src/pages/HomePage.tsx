@@ -8,7 +8,7 @@ import Modal from '../components/ui/Modal/Modal';
 import { BodyFields, ModalBody, ModalHead } from '../components/ui/Modal/Style';
 import Table from '../components/ui/Table/Table';
 import { ModalProvider } from '../context/ModalContext';
-import { useGetCompaniesQuery } from '../utils/service';
+import { useGetCompaniesQuery, useGetSomeCompaniesQuery } from '../utils/service';
 
 export interface Users {
   _id: string;
@@ -67,22 +67,31 @@ export const HomePage: FC = () => {
   };
 
   useEffect(() => {
-    // getData(value);
+    getData(value);
+    console.log(companies);
   }, [value, page, currentCompany]);
 
-  const { data, error, isLoading } = useGetCompaniesQuery(page);
-  console.log(data);
-  // const getData = async (criteria: string) => {
-  //   if (criteria.length) {
-  //     // const { data, error, isLoading } = useGetSomeCompaniesQuery({criteria, page});
-  //     // setCompanies(data.payload.companies);
-  //     // setTotalPages(Math.floor(data.payload.pages));
-  //   } else {
-  //     const { data, error, isLoading } = useGetCompaniesQuery(page);
-  //     setCompanies(data.payload.companies);
-  //     setTotalPages(Math.floor(data.payload.pages));
-  //   }
-  // };
+  const {
+    data: allCompanies,
+    error: allCompaniesError,
+    isLoading: allCompaniesLoading,
+  } = useGetCompaniesQuery(page);
+
+  const {
+    data: someCompanies,
+    error: someCompaniesError,
+    isLoading: someCompaniesLoading,
+  } = useGetSomeCompaniesQuery({ search: value, page });
+
+  const getData = async (criteria: string) => {
+    if (criteria.length) {
+      someCompanies && setCompanies(someCompanies.payload.companies);
+      someCompanies && setTotalPages(Math.floor(someCompanies.payload.pages));
+    } else {
+      allCompanies && setCompanies(allCompanies.payload.companies);
+      allCompanies && setTotalPages(Math.floor(allCompanies.payload.pages));
+    }
+  };
 
   return (
     <ModalProvider>

@@ -1,24 +1,27 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { useHistory } from 'react-router-dom';
 
-// import ApiService from '../../../utils/service';
+import { setCredentials } from '../../../slices/authSlice';
+import { useSignUpMutation } from '../../../utils/service';
 import { StyledContainer, Title } from './Style';
 
 const Card = () => {
+  const dispatch = useDispatch();
   const ref = useRef<any>();
   const isSmallScreen = useMediaQuery({ query: "(max-width: 400px)" });
   const history = useHistory();
+  const [signUp] = useSignUpMutation();
 
   const handleSubmit = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
-    const login = { email: ref.current.value };
-    const body = JSON.stringify(login);
-    const data = {token: "s"};
-    // const { data } = await ApiService.signUp(body);
-    if (data) {
-      localStorage.setItem("token", data.token);
+    try {
+      const token = await signUp({ email: ref.current!.value }).unwrap();
+      dispatch(setCredentials(token));
       history.push("/homepage");
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

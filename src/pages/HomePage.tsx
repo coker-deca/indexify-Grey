@@ -8,8 +8,7 @@ import Modal from '../components/ui/Modal/Modal';
 import { BodyFields, ModalBody, ModalHead } from '../components/ui/Modal/Style';
 import Table from '../components/ui/Table/Table';
 import { ModalProvider } from '../context/ModalContext';
-import { fetchHttpResponse } from '../utils/api';
-import ApiService from '../utils/service';
+import { useGetCompaniesQuery } from '../utils/service';
 
 export interface Users {
   _id: string;
@@ -68,20 +67,22 @@ export const HomePage: FC = () => {
   };
 
   useEffect(() => {
-    getData(value);
+    // getData(value);
   }, [value, page, currentCompany]);
 
-  const getData = async (criteria: string) => {
-    if (criteria.length) {
-      const { data } = await ApiService.getSome(criteria, page);
-      setCompanies(data.payload.companies);
-      setTotalPages(Math.floor(data.payload.pages));
-    } else {
-      const { data } = await ApiService.getAll(page);
-      setCompanies(data.payload.companies);
-      setTotalPages(Math.floor(data.payload.pages));
-    }
-  };
+  const { data, error, isLoading } = useGetCompaniesQuery(page);
+  console.log(data);
+  // const getData = async (criteria: string) => {
+  //   if (criteria.length) {
+  //     // const { data, error, isLoading } = useGetSomeCompaniesQuery({criteria, page});
+  //     // setCompanies(data.payload.companies);
+  //     // setTotalPages(Math.floor(data.payload.pages));
+  //   } else {
+  //     const { data, error, isLoading } = useGetCompaniesQuery(page);
+  //     setCompanies(data.payload.companies);
+  //     setTotalPages(Math.floor(data.payload.pages));
+  //   }
+  // };
 
   return (
     <ModalProvider>

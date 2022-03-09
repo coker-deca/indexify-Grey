@@ -1,22 +1,21 @@
-import { createHttpRequest, fetchHttpResponse } from './api';
+import { createApi } from '@reduxjs/toolkit/query/react';
 
-const baseUrl = "https://company-lookup.herokuapp.com/api/v1"
+import { Users } from '../pages/HomePage';
+import axiosBaseQuery from './api';
 
-const getAll = (page:number) => {
-  return fetchHttpResponse(`${baseUrl}/company?page=${page}`, {});
-};
-const getSome = (criteria: string, page: number) => {
-  return fetchHttpResponse(`${baseUrl}/company/${criteria}?page=${page}`, {});
-};
-const signUp = (body: any) => {
-    const url = `${baseUrl}/auth/login`;
-    const headers = { "Content-Type": "application/json" };
-  return createHttpRequest(url, body, { headers });
-};
+export const companyApi = createApi({
+  reducerPath: "companyApi",
+  baseQuery: axiosBaseQuery({
+    baseUrl: 'https://company-lookup.herokuapp.com/api/v1',
+  }),
+  endpoints: (build) => ({
+    getCompanies: build.query<Users, number>({
+      query: (page) => ({ url: `/company?page=${page}`, method: 'get' }),
+  }),
+    getSomeCompanies: build.query<Users, { search: string, page: number}>({
+      query: ({search, page}) => ({ url: `/company/${search}?page=${page}`, method: 'get' }),
+  }),
+  }),
+});
 
-const ApiService = {
-    getAll,
-    getSome,
-    signUp,
-}
-export default ApiService;
+export const { useGetCompaniesQuery, useGetSomeCompaniesQuery} = companyApi;

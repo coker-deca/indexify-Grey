@@ -1,26 +1,32 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { BaseQueryFn } from '@reduxjs/toolkit/query';
+import axios, { AxiosError, AxiosRequestConfig } from 'axios';
 
 import { setupInterceptorsTo } from './interceptor';
 
-setupInterceptorsTo(axios);
+const AxiosRequest = setupInterceptorsTo(axios);
 
-const fetchHttpResponse = async (url: string, headers: AxiosRequestConfig): Promise<AxiosResponse> => {
+const axiosBaseQuery =
+  (
+    { baseUrl }: { baseUrl: string } = { baseUrl: '' }
+  ): BaseQueryFn<
+    {
+      url: string
+      method: AxiosRequestConfig['method']
+      data?: AxiosRequestConfig['data']
+    },
+    unknown,
+    unknown
+  > =>
+  async ({ url, method, data }) => {
     try {
-        const response = await axios.get(url, headers);
-        return response;
-    } catch (error) {
-        console.log(error);
-        throw error;
+      const result = await AxiosRequest({ url: baseUrl + url, method, data })
+      return { data: result.data }
+    } catch (axiosError) {
+      let err = axiosError as AxiosError
+      return {
+        error: { status: err.response?.status, data: err.response?.data },
+      }
     }
-};
+  }
 
-const createHttpRequest = async <T>(url: string, body: T, headers: AxiosRequestConfig): Promise<AxiosResponse> => {
-    try {
-        const response = await axios.post(url, body, headers);
-        return response;
-    } catch (error) {
-        console.log(error);
-        throw error;
-    }
-};
-export { fetchHttpResponse, createHttpRequest };
+export default axiosBaseQuery;

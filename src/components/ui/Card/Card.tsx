@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useHistory } from 'react-router-dom';
 
-import ApiService from '../../../utils/service';
+// import ApiService from '../../../utils/service';
 import { StyledContainer, Title } from './Style';
 
 const Card = () => {
@@ -14,7 +14,8 @@ const Card = () => {
     e.preventDefault();
     const login = { email: ref.current.value };
     const body = JSON.stringify(login);
-    const { data } = await ApiService.signUp(body);
+    const data = {token: "s"};
+    // const { data } = await ApiService.signUp(body);
     if (data) {
       localStorage.setItem("token", data.token);
       history.push("/homepage");

@@ -35,6 +35,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     width: 297px;
     height: 41px;
     margin-bottom: 40px;
+    padding: 10px;
 
     background: ${MainColors.white};
     border: 1px solid ${MainColors['indexify-border']};

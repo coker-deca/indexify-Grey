@@ -6,19 +6,22 @@ type AuthState = {
 
 const slice = createSlice({
   name: "auth",
-  initialState: { user: null, token: null } as AuthState,
+  initialState: { token: null } as AuthState,
   reducers: {
     setCredentials: (
       state,
-      {
-        payload: { token },
-      }: PayloadAction<{ token: string }>
+      { payload: { token } }: PayloadAction<{ token: string }>
     ) => {
       state.token = token;
+    },
+    clearResults(state) {
+      // Note that this should be left intentionally empty.
+      // Clearing redux state and localForage happens in rootReducer.ts.
+      state = {token: null};
     },
   },
 });
 
-export const { setCredentials } = slice.actions;
+export const { setCredentials, clearResults } = slice.actions;
 
 export default slice.reducer;

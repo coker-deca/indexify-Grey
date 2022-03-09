@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../app/store';
 
+import { RootState } from '../app/store';
 import { Users } from '../pages/HomePage';
 
 export const companyApi = createApi({
@@ -16,15 +16,18 @@ export const companyApi = createApi({
     return headers
   },
   }),
+  tagTypes: ['Companies'],
   endpoints: (builder) => ({
     signUp: builder.mutation<{ token: string }, {"email": string}>({
     query: (request) => ({url:"/auth/login", method: "POST", body: request})
   }),
     getCompanies: builder.query<{payload: {companies: Users[], pages: number}}, number>({
       query: (page) => ({ url: `/company?page=${page}`, method: 'get' }),
+      providesTags: [{ type: 'Companies', id: 'LIST' }]
   }),
     getSomeCompanies: builder.query<{payload: {companies: Users[], pages: number}}, { search: string, page: number}>({
-      query: ({search, page}) => ({ url: `/company/${search}?page=${page}`, method: 'get' }),
+      query: ({ search, page }) => ({ url: `/company/${search}?page=${page}`, method: 'get' }),
+      providesTags: [{ type: 'Companies', id: 'LIST' }]
     }),
   }),
 });

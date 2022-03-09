@@ -13,6 +13,7 @@ interface TableProps {
   handlePrevPage: () => void;
   handleNextPage: () => void;
   isModalOpen: boolean;
+  isLoading: boolean;
   toggleModal: (state: boolean, id?: number) => void;
 }
 const Table: FC<TableProps> = ({
@@ -23,6 +24,7 @@ const Table: FC<TableProps> = ({
   handlePrevPage,
   handleNextPage,
   toggleModal,
+  isLoading,
 }) => {
   const tableRows = (rowData: { company: Users; index: number }) => {
     const { company, index } = rowData;
@@ -52,19 +54,23 @@ const Table: FC<TableProps> = ({
 
   return (
     <TableWrapper>
-      <TableContainer>
-        <StyledTable>
-          <thead>
-            <tr>{headRow()}</tr>
-          </thead>
-          <tbody>{tableData()}</tbody>
-        </StyledTable>
-      </TableContainer>
+      {!isLoading && (
+        <TableContainer>
+          <StyledTable>
+            <thead>
+              <tr>{headRow()}</tr>
+            </thead>
+            <tbody>{tableData()}</tbody>
+          </StyledTable>
+        </TableContainer>
+      )}
+      {isLoading && "Data loading"}
       <Pagination
         totalPages={totalPages}
         currentPage={page}
         handleNextPage={handleNextPage}
         handlePrevPage={handlePrevPage}
+        isLoading={isLoading}
       />
     </TableWrapper>
   );

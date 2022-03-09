@@ -12,7 +12,7 @@ const Card = () => {
   const ref = useRef<any>();
   const isSmallScreen = useMediaQuery({ query: "(max-width: 400px)" });
   const history = useHistory();
-  const [signUp] = useSignUpMutation();
+  const [signUp, {error}] = useSignUpMutation();
 
   const handleSubmit = async (e: React.MouseEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -33,6 +33,7 @@ const Card = () => {
           <input type="email" ref={ref} />
         </label>
         <input type="submit" value="Login" onClick={handleSubmit} />
+        {error && "Error login in!!!"}
       </form>
     </StyledContainer>
   );

@@ -40,11 +40,13 @@ export const HomePage: FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const debouncedSearch = useRef(
-    debounce(async (criteria: string) => setValue(criteria), 400)
+    debounce(async (criteria: string) => {
+      setValue(criteria);
+      setPage(1);
+    }, 400)
   ).current;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPage(1);
     debouncedSearch(e.target.value);
   };
 
@@ -68,8 +70,7 @@ export const HomePage: FC = () => {
 
   useEffect(() => {
     getData(value);
-    console.log(companies);
-  }, [value, page, currentCompany]);
+  }, [companies, value, page]);
 
   const {
     data: allCompanies,
@@ -96,16 +97,22 @@ export const HomePage: FC = () => {
   return (
     <ModalProvider>
       <Template value={value} handleChange={handleChange}>
-        <Table
-          page={page}
-          tableRowData={companies}
-          tableHead={tableHead}
-          totalPages={totalPages}
-          handlePrevPage={handlePrevPage}
-          handleNextPage={handleNextPage}
-          isModalOpen={isModalOpen}
-          toggleModal={handleToggleModal}
-        />
+        {(allCompaniesLoading || someCompaniesLoading) && "Loading"}
+        {companies && (
+          <Table
+            page={page}
+            tableRowData={companies}
+            tableHead={tableHead}
+            totalPages={totalPages}
+            handlePrevPage={handlePrevPage}
+            handleNextPage={handleNextPage}
+            isModalOpen={isModalOpen}
+            toggleModal={handleToggleModal}
+            isLoading={someCompaniesLoading || allCompaniesLoading}
+          />
+        )}
+        {allCompaniesError && "An Error occured"}
+        {someCompaniesError && "An Error occured"}
         {isModalOpen && currentCompany && (
           <Modal onClose={() => handleToggleModal(false)}>
             <ModalHead>{currentCompany.company_name}</ModalHead>

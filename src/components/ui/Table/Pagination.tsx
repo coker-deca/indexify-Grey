@@ -4,12 +4,14 @@ import { AiFillCaretLeft, AiFillCaretRight } from 'react-icons/ai';
 interface Props {
   currentPage: number;
   totalPages: number;
+  isLoading: boolean;
   handleNextPage: (page: number) => void;
   handlePrevPage: (page: number) => void;
 }
 const Pagination: FC<Props> = ({
   currentPage,
   totalPages,
+  isLoading,
   handlePrevPage,
   handleNextPage,
 }) => {
@@ -18,7 +20,7 @@ const Pagination: FC<Props> = ({
       <button
         className="pagination-button"
         onClick={() => handlePrevPage(currentPage)}
-        disabled={currentPage === 1}
+        disabled={currentPage === 1 || isLoading}
         title="prev"
       >
         <AiFillCaretLeft />
@@ -31,7 +33,7 @@ const Pagination: FC<Props> = ({
       <button
         className="pagination-button"
         onClick={() => handleNextPage(currentPage)}
-        disabled={currentPage === totalPages}
+        disabled={currentPage === totalPages || isLoading}
         title="Next"
       >
         <AiFillCaretRight />

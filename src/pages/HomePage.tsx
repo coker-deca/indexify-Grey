@@ -9,6 +9,7 @@ import { BodyFields, ModalBody, ModalHead } from '../components/ui/Modal/Style';
 import Table from '../components/ui/Table/Table';
 import { ModalProvider } from '../context/ModalContext';
 import { fetchHttpResponse } from '../utils/api';
+import ApiService from '../utils/service';
 
 export interface Users {
   _id: string;
@@ -57,10 +58,8 @@ export const HomePage: FC = () => {
   };
   const handleToggleModal = (state: boolean, index?: number) => {
     setIsModalOpen(state);
-    console.log(index);
     if (index) setCurrentCompany(companies[index]);
   };
-  currentCompany && console.log(currentCompany);
   const tableHead: tableHeadType = {
     company_name: "Company Name",
     email: "Email",
@@ -74,18 +73,11 @@ export const HomePage: FC = () => {
 
   const getData = async (criteria: string) => {
     if (criteria.length) {
-      const { data } = await fetchHttpResponse(
-        `https://company-lookup.herokuapp.com/api/v1/company/${criteria}?page=${page}`,
-        {}
-      );
+      const { data } = await ApiService.getSome(criteria, page);
       setCompanies(data.payload.companies);
       setTotalPages(Math.floor(data.payload.pages));
     } else {
-      const { data } = await fetchHttpResponse(
-        `https://company-lookup.herokuapp.com/api/v1/company?page=${page}`,
-        {}
-      );
-      console.log(data);
+      const { data } = await ApiService.getAll(page);
       setCompanies(data.payload.companies);
       setTotalPages(Math.floor(data.payload.pages));
     }

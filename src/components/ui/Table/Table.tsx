@@ -12,6 +12,8 @@ interface TableProps {
   tableRowData: Users[];
   handlePrevPage: () => void;
   handleNextPage: () => void;
+  isModalOpen: boolean;
+  toggleModal: (state: boolean, id?: number) => void;
 }
 const Table: FC<TableProps> = ({
   page,
@@ -20,17 +22,22 @@ const Table: FC<TableProps> = ({
   tableRowData,
   handlePrevPage,
   handleNextPage,
+  toggleModal,
 }) => {
-  const tableRows = (rowData: any) => {
+  const tableRows = (rowData: { company: Users; index: number }) => {
     const { company, index } = rowData;
     const tableCell = Object.keys(tableHead);
-      const columnData = tableCell.map((keyD, i) => {
-        let value = company[keyD];
-        if (keyD === "createdAt") value = formatDate(value);
-        return <td key={i}>{value}</td>;
-      });
+    const columnData = tableCell.map((keyD, i) => {
+      let value = company[keyD as keyof typeof tableHead];
+      if (keyD === "createdAt") value = formatDate(value);
+      return <td key={i}>{value}</td>;
+    });
 
-    return <tr key={index}>{columnData}</tr>;
+    return (
+      <tr onClick={() => toggleModal(true, index)} key={index}>
+        {columnData}
+      </tr>
+    );
   };
 
   const tableData = () => {
@@ -44,13 +51,13 @@ const Table: FC<TableProps> = ({
   };
 
   return (
-    <TableWrapper >
+    <TableWrapper>
       <TableContainer>
         <StyledTable>
           <thead>
             <tr>{headRow()}</tr>
           </thead>
-          <tbody className="trhover">{tableData()}</tbody>
+          <tbody>{tableData()}</tbody>
         </StyledTable>
       </TableContainer>
       <Pagination

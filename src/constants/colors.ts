@@ -1,6 +1,7 @@
 export const MainColors = {
     screen: "#E5E5E5",
     white: "#FFFFFF",
+    off_white: "#FBFBFB",
     black: "#000000",
     disabled: "#E9E9E9",
     "indexify-blue": "#428AF5",

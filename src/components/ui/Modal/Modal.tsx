@@ -1,5 +1,6 @@
 // import { useContext } from "react";
-import { FC } from 'react';
+import { FC, useRef } from 'react';
+import { useOnClickOutside } from '../../../hooks/useOnClickOutside';
 
 import Portal from '../Portal/Portal';
 import { Dialog } from './Style';
@@ -10,9 +11,11 @@ const Modal: FC<{ onClose: () => void }> = ({
   children,
   ...props
 }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => onClose());
   return (
     <Portal>
-      <Dialog>
+      <Dialog ref={ref}>
         <span className="close" onClick={onClose}>
           x
         </span>

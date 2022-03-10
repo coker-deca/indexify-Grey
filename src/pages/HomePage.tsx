@@ -1,4 +1,3 @@
-import { debounce } from 'lodash';
 import { FC, useEffect, useRef, useState } from 'react';
 
 import { toCurrency } from '../components/lib/currency';
@@ -37,18 +36,13 @@ export const HomePage: FC = () => {
   const [currentCompany, setCurrentCompany] = useState<Users>();
   const [totalPages, setTotalPages] = useState(10);
   const [value, setValue] = useState("");
+  const [debouncedValue, setDebouncedValue] = useState("");
   const [page, setPage] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const debouncedSearch = useRef(
-    debounce(async (criteria: string) => {
-      setValue(criteria);
-      setPage(1);
-    }, 400)
-  ).current;
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    debouncedSearch(e.target.value);
+    const criteria = e.target.value;
+    setValue(criteria);
   };
 
   const handlePrevPage = () => {
@@ -81,7 +75,19 @@ export const HomePage: FC = () => {
     error: someCompaniesError,
     isLoading: someCompaniesLoading,
     isFetching: someCompaniesUpdating,
-  } = useGetSomeCompaniesQuery({ search: value, page });
+  } = useGetSomeCompaniesQuery({ search: debouncedValue, page });
+
+  useEffect(() => {
+    const deB = setTimeout(() => {
+      console.log("CALLED");
+      if (value) {
+        setDebouncedValue(value);
+        setPage(1);
+      }
+    }, 1000);
+
+    return () => clearTimeout(deB);
+  }, [value]);
 
   useEffect(() => {
     const getData = async (criteria: string) => {
@@ -94,8 +100,8 @@ export const HomePage: FC = () => {
       }
     };
 
-    getData(value);
-  }, [companies, value, page, someCompanies, allCompanies]);
+    getData(debouncedValue);
+  }, [companies, debouncedValue, page, someCompanies, allCompanies]);
 
   return (
     <ModalProvider>

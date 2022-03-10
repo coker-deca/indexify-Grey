@@ -1,6 +1,9 @@
-# Getting Started with Create React App
+# Accessing this App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Staging URL
+You can accessing the currently running application for this app by visiting [Indexfy Stagin](https://tosin-indexify.netlify.app/)
 
 ## Available Scripts
 

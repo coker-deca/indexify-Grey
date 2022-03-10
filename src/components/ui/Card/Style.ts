@@ -5,11 +5,21 @@ import { MainColors } from '../../../constants/colors';
 export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
   background: ${MainColors.white};
   border: 1px solid ${MainColors['signUp-border']};
+  width: 390px;
   box-sizing: border-box;
   border-radius: 5px;
   padding: 9% 12%;
   margin: 40px;
+  ${({ useMediaQuery }) =>
+    useMediaQuery &&
+    css`
+      width: 90%;
+  `}
   
+  h4 {
+    color: ${MainColors.error}
+  }
+
   form {
       display: flex;
       flex-direction: column;
@@ -32,7 +42,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
   }
   
   input[type="email"] {
-    width: 297px;
+    width: 100%;
     height: 41px;
     margin-bottom: 40px;
     padding: 10px;
@@ -44,7 +54,6 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     ${({ useMediaQuery }) =>
     useMediaQuery &&
     css`
-      width: 15rem;
       height: 2rem;
     `}
   }
@@ -55,7 +64,7 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     justify-content: center;
     align-items: flex-start;
     padding: 10px 62px;
-    width: 18.6rem;
+    width: 100%;
     margin-bottom: 20px;
     height: 2.4rem;
     background: ${MainColors['indexify-blue']};
@@ -71,7 +80,6 @@ export const StyledContainer = styled.div<{useMediaQuery: boolean}>`
     ${({ useMediaQuery }) =>
     useMediaQuery &&
     css`
-      width: 15rem;
       height: 2rem;
     `}
   }

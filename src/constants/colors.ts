@@ -9,4 +9,5 @@ export const MainColors = {
     "indexify-border": "#F1F1F1",
     "signUp-border": "#F0F0F0",
     "button-hover": "#498fff",
+    "error": "red",
 }

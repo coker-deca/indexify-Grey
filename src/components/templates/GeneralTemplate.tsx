@@ -24,7 +24,9 @@ export const Template: FC<SearchProps> = ({
     <>
       <NavBar useMediaQuery={isSmallScreen}>
         <div className={"wrapper"}>
-          <Logo className={"logo"} />
+          <div className={"logo"}>
+            <Logo />
+          </div>
           <div className={"search"}>
             <Search value={value} handleChange={handleChange} />
             <Button className={"logout-word"} onClick={handleClick}>

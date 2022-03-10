@@ -7,4 +7,8 @@ export const PageContainer = styled.div`
     place-content : center;
     min-height    : 80vh;
     justify-items: center;
+
+    svg {
+        width: 119px;
+    }
 `;

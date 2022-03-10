@@ -51,4 +51,7 @@ export const NavBar = styled.div<{useMediaQuery: boolean;}>`
         display: none;
      `}
     }
+    .logo {
+        width: 95px;
+    }
 `;

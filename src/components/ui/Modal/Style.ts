@@ -1,8 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 import { MainColors } from './../../../constants/colors';
 
-export const Dialog = styled.div`
+export const Dialog = styled.div<{useMediaQuery: boolean;}>`
   background: ${MainColors.white};
   font-family: 'DM Sans';
   font-style: normal;
@@ -11,9 +11,14 @@ export const Dialog = styled.div`
   top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 30.75rem;
+  width: 50vh;
   z-index: 1;
-    perspective: 1px;
+  perspective: 1px;
+  ${({ useMediaQuery }) =>
+        useMediaQuery &&
+        css`
+        width: 80%;
+    `}
 
     .content-wrapper {
         border-radius: 5px;
@@ -56,7 +61,7 @@ export const ModalBody = styled.div`
     padding-bottom: 30px;
 `;
 
-export const BodyFields = styled.p`
+export const BodyFields = styled.p<{useMediaQuery: boolean;}>`
     margin: 0;
     margin-bottom: 20px;
     .key {
@@ -66,5 +71,11 @@ export const BodyFields = styled.p`
         font-weight: 400;
         position: absolute;
         left: 149px;
+        ${({ useMediaQuery }) =>
+            useMediaQuery &&
+            css`
+            position: static;
+            margin-left: 10px;
+        `}
     }
 `;

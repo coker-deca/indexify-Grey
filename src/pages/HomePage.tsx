@@ -1,4 +1,5 @@
 import { FC, useEffect, useState } from 'react';
+import { useMediaQuery } from 'react-responsive';
 
 import { toCurrency } from '../components/lib/currency';
 import { formatDate } from '../components/lib/date';
@@ -32,6 +33,7 @@ export type tableHeadType = {
 };
 
 export const HomePage: FC = () => {
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 425px)" });
   const [companies, setCompanies] = useState<Users[]>([]);
   const [currentCompany, setCurrentCompany] = useState<Users>();
   const [totalPages, setTotalPages] = useState(10);
@@ -126,29 +128,29 @@ export const HomePage: FC = () => {
           <Modal onClose={() => handleToggleModal(false)}>
             <ModalHead>{currentCompany.company_name}</ModalHead>
             <ModalBody>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">Email:</span>
                 <span className="value">{currentCompany.email}</span>
               </BodyFields>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">Address:</span>
                 <span className="value">{currentCompany.address}</span>
               </BodyFields>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">Date created:</span>
                 <span className="value">
                   {formatDate(currentCompany.createdAt)}
                 </span>
               </BodyFields>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">No. of staff:</span>
                 <span className="value">{currentCompany.number_of_staff}</span>
               </BodyFields>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">Country:</span>
                 <span className="value">{currentCompany.country}</span>
               </BodyFields>
-              <BodyFields>
+              <BodyFields useMediaQuery={isSmallScreen}>
                 <span className="key">Net worth:</span>
                 <span className="value">
                   {toCurrency(

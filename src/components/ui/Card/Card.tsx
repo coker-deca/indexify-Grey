@@ -38,11 +38,12 @@ const Card = () => {
           <input type="email" ref={ref} />
         </label>
         <input type="submit" value="Login" onClick={handleSubmit} />
-        {error && isFetchBaseQueryErrorType(error) ? (
-          <h4>{`(${error.status}) Error: Enter a valid email Address`}</h4>
-        ) : (
-          "Error login in!!!"
-        )}
+        {error &&
+          (isFetchBaseQueryErrorType(error) ? (
+            <h4>{`(${error.status}) Error: Enter a valid email Address`}</h4>
+          ) : (
+            "Error login in!!!"
+          ))}
       </form>
     </StyledContainer>
   );

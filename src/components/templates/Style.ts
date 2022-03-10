@@ -17,7 +17,7 @@ export const NavBar = styled.div<{useMediaQuery: boolean;}>`
             useMediaQuery &&
             css`
             padding: 1rem;
-            display: block;
+            flex-direction: column;
         `}
     }
     .search {
@@ -30,10 +30,14 @@ export const NavBar = styled.div<{useMediaQuery: boolean;}>`
             useMediaQuery &&
             css`
             margin-left: 0;
-            margin-top: 20px      `}
+            margin-top: 20px;
+            width: 100%;
+        `}
     }
     .logout-logo {
         display: none;
+        font-size: 20px;
+        padding: 10px 5px;
         
         ${({ useMediaQuery }) =>
     useMediaQuery &&
@@ -44,6 +48,7 @@ export const NavBar = styled.div<{useMediaQuery: boolean;}>`
 
     .logout-word {
         display: grid;
+        padding: 10px 28px;
 
         ${({ useMediaQuery }) =>
         useMediaQuery &&

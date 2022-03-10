@@ -10,6 +10,7 @@ export const TableWrapper = styled.div`
 
   .pagination-button-wrapper {
     display: flex;
+    align-items: center;
     width: 100%;
     justify-content: flex-end;
   }
@@ -27,20 +28,11 @@ export const TableWrapper = styled.div`
     line-height: 18px;
     text-align: center;
     letter-spacing: -0.005em;
+    margin: 0px 15px;
   }
 
   button {
-    display: grid;
-    place-items: center;
-    height: 26px;
-    width: 26px;
     font-size: 17px;
-    border-radius: 5px;
-    color: ${MainColors.white};
-    background-color: ${MainColors["indexify-blue"]};
-    cursor: pointer;
-    margin: 0px 15px;
-    border: none;
   }
 
   button:hover {

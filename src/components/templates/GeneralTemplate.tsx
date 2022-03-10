@@ -1,9 +1,7 @@
 import { FC } from 'react';
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { persistor } from '../..';
 
-import { clearResults } from '../../app/slices/authSlice';
+import { persistor } from '../..';
 import Button from '../ui/Button/Button';
 import { Logo } from '../ui/Logo/Logo';
 import Search, { SearchProps } from '../ui/Search/Search';
@@ -14,7 +12,6 @@ export const Template: FC<SearchProps> = ({
   handleChange,
   children,
 }) => {
-  const dispatch = useDispatch();
   const history = useHistory();
   const handleClick = () => {
     persistor.purge();

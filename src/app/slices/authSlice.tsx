@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { persistor } from '../..';
 import { RootState } from '../store';
 
 type AuthState = {

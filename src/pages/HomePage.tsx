@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
 import { toCurrency } from '../components/lib/currency';
 import { formatDate } from '../components/lib/date';
@@ -79,7 +79,6 @@ export const HomePage: FC = () => {
 
   useEffect(() => {
     const deB = setTimeout(() => {
-      console.log("CALLED");
       if (value) {
         setDebouncedValue(value);
         setPage(1);

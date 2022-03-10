@@ -6,6 +6,7 @@ import { formatDate } from '../components/lib/date';
 import { Template } from '../components/templates/GeneralTemplate';
 import Modal from '../components/ui/Modal/Modal';
 import { BodyFields, ModalBody, ModalHead } from '../components/ui/Modal/Style';
+import LoadingSpinner from '../components/ui/Spinner/Spinner';
 import Table from '../components/ui/Table/Table';
 import { ModalProvider } from '../context/ModalContext';
 import { useGetCompaniesQuery, useGetSomeCompaniesQuery } from '../utils/service';
@@ -68,38 +69,40 @@ export const HomePage: FC = () => {
     createdAt: "Date Created",
   };
 
-    const {
-      data: allCompanies,
-      error: allCompaniesError,
-      isLoading: allCompaniesLoading,
-    } = useGetCompaniesQuery(page);
+  const {
+    data: allCompanies,
+    error: allCompaniesError,
+    isLoading: allCompaniesLoading,
+    isFetching: allCompaniesUpdating,
+  } = useGetCompaniesQuery(page);
 
-    const {
-      data: someCompanies,
-      error: someCompaniesError,
-      isLoading: someCompaniesLoading,
-    } = useGetSomeCompaniesQuery({ search: value, page });
+  const {
+    data: someCompanies,
+    error: someCompaniesError,
+    isLoading: someCompaniesLoading,
+    isFetching: someCompaniesUpdating,
+  } = useGetSomeCompaniesQuery({ search: value, page });
 
-    useEffect(() => {
-      const getData = async (criteria: string) => {
-        if (criteria.length) {
-          someCompanies && setCompanies(someCompanies.payload.companies);
-          someCompanies &&
-            setTotalPages(Math.floor(someCompanies.payload.pages));
-        } else {
-          allCompanies && setCompanies(allCompanies.payload.companies);
-          allCompanies && setTotalPages(Math.floor(allCompanies.payload.pages));
-        }
-      };
+  useEffect(() => {
+    const getData = async (criteria: string) => {
+      if (criteria.length) {
+        someCompanies && setCompanies(someCompanies.payload.companies);
+        someCompanies && setTotalPages(Math.floor(someCompanies.payload.pages));
+      } else {
+        allCompanies && setCompanies(allCompanies.payload.companies);
+        allCompanies && setTotalPages(Math.floor(allCompanies.payload.pages));
+      }
+    };
 
-      getData(value);
-    }, [companies, value, page, someCompanies, allCompanies]);
+    getData(value);
+  }, [companies, value, page, someCompanies, allCompanies]);
 
   return (
     <ModalProvider>
       <Template value={value} handleChange={handleChange}>
         {(allCompaniesLoading || someCompaniesLoading) && "Loading"}
-        {companies && (
+        {(someCompaniesUpdating || allCompaniesUpdating) && <LoadingSpinner />}
+        {!allCompaniesLoading && !someCompaniesLoading && (
           <Table
             page={page}
             tableRowData={companies}
@@ -109,7 +112,7 @@ export const HomePage: FC = () => {
             handleNextPage={handleNextPage}
             isModalOpen={isModalOpen}
             toggleModal={handleToggleModal}
-            isLoading={someCompaniesLoading || allCompaniesLoading}
+            isLoading={someCompaniesUpdating || allCompaniesUpdating}
           />
         )}
         {allCompaniesError && "An Error occured"}

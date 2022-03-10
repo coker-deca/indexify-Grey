@@ -2,8 +2,8 @@ import { configureStore, ConfigureStoreOptions } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 
-import authReducer from '../slices/authSlice';
 import { companyApi } from '../utils/service';
+import authReducer from './slices/authSlice';
 
 export const createStore = (options?: ConfigureStoreOptions['preloadedState'] | undefined) =>
   configureStore({

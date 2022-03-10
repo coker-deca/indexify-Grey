@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { useHistory } from 'react-router-dom';
 
-import { setCredentials } from '../../../slices/authSlice';
+import { setCredentials } from '../../../app/slices/authSlice';
 import { useSignUpMutation } from '../../../utils/service';
 import { StyledContainer, Title } from './Style';
 

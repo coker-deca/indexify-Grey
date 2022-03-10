@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
-import { clearResults } from '../../slices/authSlice';
+import { clearResults } from '../../app/slices/authSlice';
 import Button from '../ui/Button/Button';
 import { Logo } from '../ui/Logo/Logo';
 import Search, { SearchProps } from '../ui/Search/Search';

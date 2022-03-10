@@ -1,4 +1,6 @@
 import { FC } from 'react';
+import { RiLogoutBoxRFill } from 'react-icons/ri';
+import { useMediaQuery } from 'react-responsive';
 import { useHistory } from 'react-router-dom';
 
 import { persistor } from '../..';
@@ -13,16 +15,26 @@ export const Template: FC<SearchProps> = ({
   children,
 }) => {
   const history = useHistory();
+  const isSmallScreen = useMediaQuery({ query: "(max-width: 425px)" });
   const handleClick = () => {
     persistor.purge();
     history.push("/sign_up");
   };
   return (
     <>
-      <NavBar>
-        <Logo />
-        <Search value={value} handleChange={handleChange} />
-        <Button value="Logout" onClick={handleClick} />
+      <NavBar useMediaQuery={isSmallScreen}>
+        <div className={"wrapper"}>
+          <Logo className={"logo"} />
+          <div className={"search"}>
+            <Search value={value} handleChange={handleChange} />
+            <Button className={"logout-word"} onClick={handleClick}>
+              Logout
+            </Button>
+            <Button className={"logout-logo"} onClick={handleClick}>
+              <RiLogoutBoxRFill />
+            </Button>
+          </div>
+        </div>
       </NavBar>
       {children}
     </>

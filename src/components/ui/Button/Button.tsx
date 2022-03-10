@@ -1,13 +1,15 @@
-import React, { FC } from 'react';
+import { ButtonHTMLAttributes, FC } from 'react';
 
 import { StyledButton } from './Style';
 
-const Button: FC<{
-  className?: string;
-  value: string;
-  onClick: () => void;
-}> = ({ className, value, onClick }) => (
-  <StyledButton className={className} onClick={onClick}>{value}</StyledButton>
+const Button: FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
+  children,
+  className,
+  ...props
+}) => (
+  <StyledButton className={className} {...props}>
+    {children}
+  </StyledButton>
 );
 
 export default Button;

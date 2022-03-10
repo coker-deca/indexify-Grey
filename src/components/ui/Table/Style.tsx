@@ -30,20 +30,21 @@ export const TableWrapper = styled.div`
   }
 
   button {
+    display: grid;
+    place-items: center;
     height: 26px;
     width: 26px;
     font-size: 17px;
-    user-select: none;
     border-radius: 5px;
     color: ${MainColors.white};
-    background-color: ${MainColors['indexify-blue']};
+    background-color: ${MainColors["indexify-blue"]};
     cursor: pointer;
     margin: 0px 15px;
     border: none;
   }
 
   button:hover {
-    background-color: ${MainColors['button-hover']};
+    background-color: ${MainColors["button-hover"]};
     color: ${MainColors.white};
   }
 

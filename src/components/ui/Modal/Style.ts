@@ -8,13 +8,13 @@ export const Dialog = styled.div`
   font-style: normal;
   border-radius: 5px;
   position: absolute;
-  top: 50%;
+  top: 30%;
   left: 50%;
   transform: translate(-50%, -50%);
   width: 30.75rem;
   z-index: 1;
     perspective: 1px;
-    
+
     .content-wrapper {
         border-radius: 5px;
         overflow: hidden;

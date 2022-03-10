@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { persistor } from '../..';
 
 import { clearResults } from '../../app/slices/authSlice';
 import Button from '../ui/Button/Button';
@@ -16,7 +17,7 @@ export const Template: FC<SearchProps> = ({
   const dispatch = useDispatch();
   const history = useHistory();
   const handleClick = () => {
-    dispatch(clearResults);
+    persistor.purge();
     history.push("/sign_up");
   };
   return (

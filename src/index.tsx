@@ -10,7 +10,7 @@ import App from './App';
 import { store } from './app/store';
 import reportWebVitals from './reportWebVitals';
 
-let persistor = persistStore(store);
+export const persistor = persistStore(store);
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,4 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+import { persistor } from '../..';
 import { RootState } from '../store';
 
 type AuthState = {
@@ -18,7 +20,9 @@ const slice = createSlice({
     clearResults(state) {
       // Note that this should be left intentionally empty.
       // Clearing redux state and localForage happens in rootReducer.ts.
-      state = {token: null};
+      // state = { token: null };
+      // persistor.flush();
+      // localStorage.removeItem("token");
     },
   },
 });

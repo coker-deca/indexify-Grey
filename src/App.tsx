@@ -7,12 +7,8 @@ import { HomePage } from './pages/HomePage';
 import { SignUp } from './pages/SignUp';
 import { PrivateRoute } from './routes/PrivateRoute';
 
-// import { ApiProvider } from '@reduxjs/toolkit/dist/query/react';
-// import { companyApi } from './utils/service';
-
 function App() {
   return (
-    // <ApiProvider api={companyApi}>
     <Router>
       <Switch>
         <Route path="/sign_up">
@@ -26,7 +22,6 @@ function App() {
         </PrivateRoute>
       </Switch>
     </Router>
-    // </ApiProvider>
   );
 }
 

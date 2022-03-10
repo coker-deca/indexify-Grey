@@ -26,7 +26,7 @@ const Card = () => {
       dispatch(setCredentials(token));
       history.push("/homepage");
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
   return (
